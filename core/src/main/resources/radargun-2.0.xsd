@@ -83,6 +83,7 @@
                         <element name="stress-test" type="rg:org-radargun-stages-cache-stresstest-stress-test-stage"/>
                         <element name="web-session-benchmark" type="rg:org-radargun-stages-cache-stresstest-stress-test-stage"/>
                         <element name="client-stress-test" type="rg:org-radargun-stages-cache-stresstest-client-stress-test-stage"/>
+                        <element name="cluster-listeners" type="rg:org-radargun-stages-cache-stresstest-cluster-listeners-stage"/>
                         <element name="cluster-validation" type="rg:org-radargun-stages-cache-cluster-validation-stage"/>
                         <element name="command" type="rg:org-radargun-stages-command-stage"/>
                         <element name="distributed-task" type="rg:org-radargun-stages-distributedtask-distributed-task-stage"/>
@@ -192,6 +193,7 @@
             <element name="stress-test" type="rg:org-radargun-stages-cache-stresstest-stress-test-stage"/>
             <element name="web-session-benchmark" type="rg:org-radargun-stages-cache-stresstest-stress-test-stage"/>
             <element name="client-stress-test" type="rg:org-radargun-stages-cache-stresstest-client-stress-test-stage"/>
+            <element name="cluster-listeners" type="rg:org-radargun-stages-cache-stresstest-cluster-listeners-stage"/>
             <element name="cluster-validation" type="rg:org-radargun-stages-cache-cluster-validation-stage"/>
             <element name="command" type="rg:org-radargun-stages-command-stage"/>
             <element name="distributed-task" type="rg:org-radargun-stages-distributedtask-distributed-task-stage"/>
@@ -1589,6 +1591,28 @@
             <attribute name="max-threads" type="rg:int" use="required">
                <annotation>
                   <documentation>Maximum number of threads this will be run with.</documentation>
+               </annotation>
+            </attribute>
+         </extension>
+      </complexContent>
+   </complexType>
+   <!--From radargun-core-2.0.0-SNAPSHOT.jar-->
+   <complexType name="org-radargun-stages-cache-stresstest-cluster-listeners-stage">
+      <annotation>
+         <documentation>Benchmark operations performance where cluster listeners are enabled or disabled.</documentation>
+      </annotation>
+      <complexContent>
+         <extension base="rg:org-radargun-stages-cache-stresstest-stress-test-stage">
+            <sequence>
+               <element maxOccurs="1" minOccurs="0" name="enable-cluster-listeners" type="rg:boolean">
+                  <annotation>
+                     <documentation>During stress stage, cluster listeners could be enabled. This is flag to turn them on. Default is disabled.</documentation>
+                  </annotation>
+               </element>
+            </sequence>
+            <attribute name="enable-cluster-listeners" type="rg:boolean">
+               <annotation>
+                  <documentation>During stress stage, cluster listeners could be enabled. This is flag to turn them on. Default is disabled.</documentation>
                </annotation>
             </attribute>
          </extension>
