@@ -2,8 +2,10 @@ package org.radargun.state;
 
 import java.net.InetAddress;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.radargun.config.Cluster;

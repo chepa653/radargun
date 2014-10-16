@@ -1,5 +1,7 @@
 package org.radargun.traits;
 
+import org.radargun.Operation;
+
 import java.util.Collection;
 
 /**
@@ -18,6 +20,7 @@ import java.util.Collection;
  */
 @Trait(doc = "Allows to listen for events on the cache.")
 public interface CacheListeners {
+   String TRAIT = CacheListeners.class.getSimpleName();
 
    enum Type {
       CREATED,
@@ -25,6 +28,42 @@ public interface CacheListeners {
       REMOVED,
       EVICTED,
       EXPIRED
+   }
+
+   enum Name {
+      CREATED(TRAIT + ".Created"),
+      EVICTED(TRAIT + ".Evicted"),
+      REMOVED(TRAIT + ".Removed"),
+      UPDATED(TRAIT + ".Updated"),
+      EXPIRED(TRAIT + ".Expired");
+
+      Name(String simpleName) {
+         this.simpleName = simpleName;
+      }
+
+      final String simpleName;
+
+      public String sName() {
+         return simpleName;
+      }
+   }
+
+   enum Operations {
+      CREATED(Operation.register(TRAIT + ".Created")),
+      EVICTED(Operation.register(TRAIT + ".Evicted")),
+      REMOVED(Operation.register(TRAIT + ".Removed")),
+      UPDATED(Operation.register(TRAIT + ".Updated")),
+      EXPIRED(Operation.register(TRAIT + ".Expired"));
+
+      Operations(Operation operation) {
+         this.operation = operation;
+      }
+
+      final Operation operation;
+
+      public Operation op() {
+         return operation;
+      }
    }
 
    Collection<Type> getSupportedListeners();
